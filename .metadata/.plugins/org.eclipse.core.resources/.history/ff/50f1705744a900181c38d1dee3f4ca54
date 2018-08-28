@@ -1,0 +1,139 @@
+/*
+ * Here is a starting point for your Matrix tester. You will have to fill in the rest of "main" with
+ * more code to sufficiently test your Matrix class. We will be using our own MatrixTester for grading. 
+*/
+package assignment1;
+
+import java.util.Arrays;
+
+public class MatrixTester {
+	public static void main(String[] args)
+	{			
+		Matrix M1 = new Matrix(new int[][]
+		                       {{1, 2, 3},
+							   {2, 5, 6}});
+		
+		Matrix M2 = new Matrix(new int[][]
+		                       {{4, 5},
+							   {3, 2},
+							   {1, 1}});
+
+		Matrix M3 = new Matrix(new int[][]
+                			   {{6, 6, 6},
+				   			   {7, 7, 7}});
+
+		
+		
+		// this is the known correct result of multiplying M1 by M2
+		Matrix referenceMultiplyM1M2 = new Matrix(new int[][]
+		                                      {{13, 12},
+								              {29, 26}});
+		
+		// this is the known correct result of multiplying M1 by M2
+		Matrix referenceMultiplyM2M1 = new Matrix(new int[][]
+		                                      {{14, 33, 42},
+			                                  {7, 16, 21},			
+								              {3, 7, 9}});
+		
+		// this is the known correct result of adding M1 to M1
+		Matrix referenceAdditionM1M1 = new Matrix(new int[][]
+		                                      {{2, 4, 6},
+								              {4, 10, 12}});
+
+		Matrix referenceAdditionM1M3 = new Matrix(new int[][]
+                							  {{7, 8, 9},
+											  {9, 12, 13}});
+		
+		Matrix singleElementMatrix7= new Matrix(new int[][] {{7}});
+		
+		
+		System.out.println(M1);
+		System.out.println(M3);
+		
+		System.out.println(M1.plus(M3));
+				                             
+		
+		
+		
+//		/* 
+//		 * Note that none of the tests below will be correct until you have implemented all methods.
+//		 * This is just one example of a test, you must write more tests and cover all cases.
+//		 */
+//		
+//		// exercise your toString method
+//		String m1Expected = "1 2 3 \n2 5 6 \n";
+//		String m1Result = M1.toString();
+//		if(!m1Expected.equals(m1Result))
+//			System.out.println("toString Error.\nGot:\n" + m1Result + "\nExpected:\n" + m1Expected);
+//		
+//		// get the matrix computed by your times method
+//		Matrix computedMultiply = M1.times(M2);
+//		
+//		// exercises your toString method as well
+//		System.out.println("Computed result for M1 * M2:\n" + computedMultiply); 
+//		
+//		// exercises your .equals method, and makes sure that your computed result is the same as the known correct result
+//		if(!referenceMultiplyM1M2.equals(computedMultiply)) 
+//			System.out.println("equals error (M1 * M2 not equal to expected result)");
+//		
+//		//TODO: fill in more tests that fully exercise all of your methods
+//		// Test if a matrix is equal to itself
+//		if(!M1.equals(M1)) {
+//			System.out.println("Unexpected Result: M1 not equal to M1");
+//		}
+//		// Test if two unique matrices equal each other
+//		if(M1.equals(M2)) {
+//			System.out.println("Unexpected Result: M1 equal to M2");
+//		}
+//		
+//		// Get the matrix computed by adding M1 to M1
+//		Matrix computedAdditionM1M1 = M1.plus(M1);
+//		
+//		System.out.println("Computed result for M1 + M1:\n" + computedAdditionM1M1); 
+//		
+//		// Makes sure that your computed result is the same as the known correct result for addition
+//		if(!referenceAdditionM1M1.equals(computedAdditionM1M1)) 
+//			System.out.println("equals error (M1 + M1 not equal to expected result)");
+//
+//		// get the matrix computed by your times method M2 * M1
+//		Matrix computedMultiplyM2M1 = M2.times(M1);
+//		
+//		System.out.println("Computed result for M1 * M2:\n" + computedMultiplyM2M1); 
+//		
+//		// exercises your .equals method, and makes sure that your computed result is the same as the known correct result
+//		if(!referenceMultiplyM2M1.equals(computedMultiplyM2M1)) 
+//			System.out.println("equals error (M2 * M1 not equal to expected result)");
+//		
+//		// M1 * M1 is not a legitimate function and should return null.
+//		if(M1.times(M1) != null) {
+//			System.out.println("Unexpected Result: M1 * M1 did not return null.");
+//		}
+		
+		// M1 + M2 is not a legitimate function and should return null.
+		if(M1.plus(M2) != null) {
+			System.out.println("Unexpected Result: M1 + M2 did not return null.");
+		}		
+		
+		// M2 + M1 is not a legitimate function and should return null.
+		if(M2.plus(M1) != null) {
+			System.out.println("Unexpected Result: M2 + M1 did not return null.");
+		}
+		
+		// M1 + M3 should equal referenceAdditionM1M3
+		if( !(M1.plus(M3).equals(referenceAdditionM1M3)) ) {
+			System.out.println("M1 + M3 returned an unexpected result.");
+		}
+		
+		// M3 + M1 should equal referenceAdditionM1M3
+		if( !(M3.plus(M1).equals(referenceAdditionM1M3)) ) {
+			System.out.println("M3 + M1 returned an unexpected result.");
+		}		
+		
+		
+		
+
+		
+//		System.out.println(M2.times(referenceMultiplyM1M2));
+		
+	}
+}

@@ -1,0 +1,147 @@
+package assignment1;
+
+public class Matrix {
+	private int numRows;
+	private int numColumns;
+	private int data[][];
+	
+	// Constructor with data for new matrix (automatically determines dimensions)
+	public Matrix(int d[][])
+	{
+		numRows = d.length; // d.length is the number of 1D arrays in the 2D array
+		if(numRows == 0)
+			numColumns = 0;
+		else
+			numColumns = d[0].length; // d[0] is the first 1D array
+		data = new int[numRows][numColumns]; // create a new matrix to hold the data
+		// copy the data over
+		for(int i=0; i < numRows; i++) 
+			for(int j=0; j < numColumns; j++)
+				data[i][j] = d[i][j];
+	}
+	
+	@Override // instruct the compiler that we do indeed intend for this method to override the superclass' (Object) version
+	public boolean equals(Object o)
+	{
+		if(!(o instanceof Matrix)) // make sure the Object we're comparing to is a Matrix
+			return false;
+		Matrix m = (Matrix)o; // if the above was not true, we know it's safe to treat 'o' as a Matrix
+		
+		
+		// Check that the number of rows and columns are equal.
+		if(this.numRows != m.numRows) {
+			return false;
+		}
+		if(this.numColumns != m.numColumns) {
+			return false;
+		}
+		// Check if each element in the matrix is equal.
+		for(int i = 0; i < numRows; i++) {
+			for(int j = 0; j < numColumns; j++) {
+				if(this.data[i][j] != m.data[i][j]) {
+					return false;
+				}
+				}
+			}
+		return true; // placeholder
+	}
+	
+	@Override // instruct the compiler that we do indeed intend for this method to override the superclass' (Object) version
+	public String toString()
+	{
+		StringBuilder sb = new StringBuilder();
+		
+		// Iterate over rows and columns to append each digit to string builder
+		for(int i = 0; i < numRows; i++) {
+			for(int j = 0; j < numColumns; j++) {
+				sb.append( data[i][j] );
+				sb.append(' ');
+				// If the last digit in a column then append a new line
+				if( j == (numColumns - 1) ) {
+					sb.append('\n');
+				}
+			}
+		}
+		return sb.toString(); // placeholder
+	}
+	
+	public Matrix times(Matrix m)
+	{
+		/* DONE? Testing still.
+		 * TODO: replace the below return statement with the correct code.
+		 *  This function must check if the two matrices are compatible for multiplication; if not, return null.
+		 *  If they are compatible, determine the dimensions of the resulting matrix, and fill it in with
+		 *  the correct values for matrix multiplication
+		 */
+		if(numColumns != m.numRows) {
+			return null;
+		}
+		// Size of product matrix is the the number of rows of the first matrix and the number of columns
+		// of the second matrix.
+		int[][] productData = new int[numRows][m.numColumns];
+		// Take the dot product of the i row of the first matrix and the j column of the second matrix, then append
+		// that to the nested array in the appropriate position
+		for(int i = 0; i < numRows; i++) {
+			for(int j = 0; j < m.numColumns; j++) {
+				productData[i][j] = dotProduct( data[i], m.getColumn(j) );
+			}
+		}
+		
+		return new Matrix(productData); // placeholder
+	}
+	
+	public Matrix plus(Matrix m)
+	{
+		/*
+		 * TODO: replace the below return statement with the correct code. 
+		 *  This function must check if the two matrices are compatible for addition; if not, return null.
+		 *  If they are compatible, create a new matrix and fill it in with
+		 *  the correct values for matrix addition
+		 */
+		if( (numRows != m.numRows) || (numColumns != m.numColumns) ) {
+			System.out.println("FAIL");
+			return null;
+		}
+		
+		int[][] totalData = new int[numRows][numColumns];
+		
+		for(int i = 0; i < numRows; i++) {
+			for(int j = 0; j < numColumns; j++) {
+				totalData[i][j] = data[i][j] + m.data[i][j];
+			}
+		}
+		return new Matrix(totalData); // placeholder
+	}
+	
+	
+	/**
+	 * Returns the dot product of two vectors of integers.
+	 * 
+	 * @param v1 vector 1
+	 * @param v2 vector 2
+	 * @return dot product
+	 */
+	private int dotProduct(int[] v1, int[] v2) {
+		int dotProduct = 0;
+		
+		for(int i = 0; i < v1.length; i++) {
+			dotProduct += v1[i] * v2[i];
+		}
+		return dotProduct; 
+	}
+	
+	
+	/**
+	 * Returns an integer array of a column given a column index. 
+	 * 
+	 * @param columnIndex column index to be returned
+	 * @return integer array of column
+	 */
+	private int[] getColumn(int columnIndex) {
+	int[] row = new int[numRows];
+	for (int i = 0; i < numRows; i++) {
+		row[i] = data[i][columnIndex];
+	}
+	return row;
+}
+}

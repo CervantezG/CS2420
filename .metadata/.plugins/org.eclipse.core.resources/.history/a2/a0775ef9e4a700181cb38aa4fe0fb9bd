@@ -1,0 +1,59 @@
+package lab1;
+
+/**
+ * A very simple java exercise to practice using 
+ * the Eclipse Canvas plugin.
+ * @author Daniel Kopta and Garret Cervantez
+ *
+ */
+public class Lab1 {
+	
+	
+	public static void main(String[] args)
+	{
+		// Run FindMin on several inputs with special cases
+		
+		// ascending
+		int[] arr1 = {1, 2, 3, 4};
+		if(FindMin(arr1) != 1)
+			System.out.println("Test failed: arr1");
+		
+		// descending
+		int[] arr2 = {4, 3, 2, 1};
+		if(FindMin(arr2) != 1)
+			System.out.println("Test failed: arr2");
+
+		// mixed positive/negative
+		int[] arr3 = {-2, -3, 1, 5};
+		if(FindMin(arr3) != -3)
+			System.out.println("Test failed: arr3");
+		
+		// TODO: Add one more test
+		int[] arr4 = {1};
+		if(FindMin(arr4) != 1)
+			System.out.println("Test failed: arr4");
+		
+		System.out.println("Tests complete");
+	}
+	
+	/**
+	 * Find the smallest item in the input array. 
+	 * Assume the input contains at least one item.
+	 * @param input The array of integers to search
+	 * @return The smallest integer in the input array
+	 */
+	public static int FindMin(int[] input)
+	{
+		int lowest_n = input[0];
+		
+		for(int i = 1; i < input.length; i++) {
+			 if (input[i] < lowest_n) {
+				 lowest_n = input[i];
+			 }
+		}
+		return lowest_n;
+	}
+	
+	// Do you flag swear words?  Like what if I said fuck the professor, that guys doesn't get it?
+
+}

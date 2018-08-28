@@ -1,0 +1,26 @@
+package assignment1;
+
+import static org.junit.jupiter.api.Assertions.*;
+
+import org.junit.jupiter.api.Test;
+
+class MatrixTimesTest8X1 {
+
+	@Test
+	void test() {
+		// 8x1 matrix
+		Matrix A = new Matrix(new int[][]
+							{ {0},
+							{3},
+							{6},
+							{9},
+							{11},
+							{15},
+							{18},
+							{21} });
+		// 1x3 matrix
+		Matrix B = new Matrix(new int[][]
+							{{0, 1, 2}});
+	}
+
+}

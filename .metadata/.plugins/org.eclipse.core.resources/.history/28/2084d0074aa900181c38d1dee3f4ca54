@@ -1,0 +1,40 @@
+package assignment1;
+
+import static org.junit.jupiter.api.Assertions.*;
+
+import org.junit.jupiter.api.Test;
+
+class MatrixTimesTest8X1 {
+
+	@Test
+	void test() {
+		// 8x1 matrix
+		Matrix A = new Matrix(new int[][]
+							{ {0},
+							{3},
+							{6},
+							{9},
+							{12	},
+							{15},
+							{18},
+							{21} });
+		// 1x3 matrix
+		Matrix B = new Matrix(new int[][]
+							{{0, 1, 2}});
+		
+		Matrix expected = new Matrix(new int[][]
+				{ {0, 0, 0},
+				{0, 3, 6},
+				{0, 6, 12},
+				{0, 9, 18},
+				{0, 12, 24},
+				{0, 15, 30},
+				{0, 18, 36},
+				{0, 21, 42} });
+		
+		Matrix result = A.times(B);
+		
+		assertEquals(expected, result);
+	}
+
+}
